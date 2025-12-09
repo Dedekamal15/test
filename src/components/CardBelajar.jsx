@@ -7,66 +7,73 @@ import { NavLink } from 'react-router-dom'
 
 function CardBelajar() {
   return (
-    <div className='grid grid-cols-4 gap-16'>
-      <div className='w-64  max-w-[380px] h-auto border-1 border-10 p-4 rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300'>
-      <NavLink to="/belajar/word" className="block">
-        <img 
-          src={word}
-          alt="Belajar Ms WORD"
-          className='w-full h-auto rounded-lg mb-4'
-        />
-        <h2 className='font-bold text-2xl text-black mb-4'>WORD</h2>
-        <div className='hover:shadow-2xl bg-blue-700 py-3 w-56 h-10 flex items-center justify-center text-white font-bold rounded-lg transition-all duration-300 hover:bg-blue-800 hover:scale-105'>
-          Mulai Belajar
-        </div>
-      </NavLink>
+    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6'>
+      
+      <div className='bg-white p-6 rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col'>
+        <NavLink to="/belajar/word" className="flex flex-col flex-1">
+          <div className='flex items-center justify-center h-48 mb-4'>
+            <img 
+              src={word}
+              alt="Belajar Ms WORD"
+              className='max-h-full max-w-full object-contain rounded-lg'
+            />
+          </div>
+          <h2 className='font-bold text-2xl text-black mb-4 text-center'>WORD</h2>
+          <div className='mt-auto bg-blue-700 py-3 w-full flex items-center justify-center text-white font-bold rounded-lg transition-all duration-300 hover:bg-blue-800 hover:scale-105 hover:shadow-xl'>
+            Mulai Belajar
+          </div>
+        </NavLink>
       </div>
       
-    <div className='w-64 max-w-[380px] h-auto border-1 border-10 p-4 rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300'>
-      <NavLink to="/belajar/Excel" className="block">
-        <img 
-          src={excel}
-          alt="Belajar Ms EXCEL"
-          className='w-full h-auto rounded-lg mb-4'
-        />
-        <h2 className='font-bold text-2xl text-black mb-4'>EXCEl</h2>
-        <div className='hover:shadow-2xl bg-blue-700 py-3 w-56 h-10 flex items-center justify-center text-white font-bold rounded-lg transition-all duration-300 hover:bg-blue-800 hover:scale-105'>
-          Mulai Belajar
-        </div>
-      </NavLink>
-    </div>
+      <div className='bg-white p-6 rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col'>
+        <NavLink to="/belajar/Excel" className="flex flex-col flex-1">
+          <div className='flex items-center justify-center h-48 mb-4'>
+            <img 
+              src={excel}
+              alt="Belajar Ms EXCEL"
+              className='max-h-full max-w-full object-contain rounded-lg'
+            />
+          </div>
+          <h2 className='font-bold text-2xl text-black mb-4 text-center'>EXCEL</h2>
+          <div className='mt-auto bg-blue-700 py-3 w-full flex items-center justify-center text-white font-bold rounded-lg transition-all duration-300 hover:bg-blue-800 hover:scale-105 hover:shadow-xl'>
+            Mulai Belajar
+          </div>
+        </NavLink>
+      </div>
 
+      <div className='bg-white p-6 rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col'>
+        <NavLink to="/belajar/PowerPoint" className="flex flex-col flex-1">
+          <div className='flex items-center justify-center h-48 mb-4'>
+            <img 
+              src={powerpoint}
+              alt="Belajar Ms PowerPoint"
+              className='max-h-full max-w-full object-contain rounded-lg'
+            />
+          </div>
+          <h2 className='font-bold text-2xl text-black mb-4 text-center'>PowerPoint</h2>
+          <div className='mt-auto bg-blue-700 py-3 w-full flex items-center justify-center text-white font-bold rounded-lg transition-all duration-300 hover:bg-blue-800 hover:scale-105 hover:shadow-xl'>
+            Mulai Belajar
+          </div>
+        </NavLink>
+      </div>
 
-    <div className='w-64 max-w-[380px] h-auto border-1 border-10 p-4 rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300'>
-      <NavLink to="/belajar/PowerPoint" className="block">
-        <img 
-          src={powerpoint}
-          alt="Belajar Ms WORD"
-          className='w-full h-auto rounded-lg mb-4'
-        />
-        <h2 className='font-bold text-2xl text-black mb-4'>PowerPoint</h2>
-        <div className='hover:shadow-2xl bg-blue-700 py-3 w-56 h-10 flex items-center justify-center text-white font-bold rounded-lg transition-all duration-300 hover:bg-blue-800 hover:scale-105'>
-          Mulai Belajar
-        </div>
-      </NavLink>
-    </div>
+      <div className='bg-white p-6 rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col'>
+        <NavLink to="/belajar/JS" className="flex flex-col flex-1">
+          <div className='flex items-center justify-center h-48 mb-4'>
+            <img 
+              src={Javascript}
+              alt="Belajar JavaScript"
+              className='max-h-full max-w-full object-contain rounded-lg'
+            />
+          </div>
+          <h2 className='font-bold text-2xl text-black mb-4 text-center'>JavaScript</h2>
+          <div className='mt-auto bg-blue-700 py-3 w-full flex items-center justify-center text-white font-bold rounded-lg transition-all duration-300 hover:bg-blue-800 hover:scale-105 hover:shadow-xl'>
+            Mulai Belajar
+          </div>
+        </NavLink>
+      </div>
 
-
-    <div className='w-64 max-w-[380px] h-auto border-1 border-10 p-4 rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300'>
-      <NavLink to="/belajar/JS" className="block">
-        <img 
-          src={Javascript}
-          alt="Belajar Ms WORD"
-          className='w-full h-auto rounded-lg mb-4'
-        />
-        <h2 className='font-bold text-2xl text-black mb-4'>JavaScript</h2>
-        <div className='hover:shadow-2xl bg-blue-700 py-3 w-56 h-10 flex items-center justify-center text-white font-bold rounded-lg transition-all duration-300 hover:bg-blue-800 hover:scale-105'>
-          Mulai Belajar
-        </div>
-      </NavLink>
     </div>
-    </div>
-    
   )
 }
 

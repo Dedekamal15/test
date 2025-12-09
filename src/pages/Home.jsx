@@ -55,7 +55,7 @@ export default function ImageCarousel() {
   };
 
   return (
-    <div className="w-full  mx-auto p-4">
+    <div className="w-full pt-24 mx-auto p-4">
       <div className="relative w-full h-96 overflow-hidden rounded-lg shadow-2xl bg-gray-900">
         <div 
           className="flex transition-transform duration-500 ease-out h-full"

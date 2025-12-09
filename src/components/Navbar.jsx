@@ -56,7 +56,7 @@ function Navbar() {
           </NavLink>
 
            <NavLink 
-            to="/Login"
+            to="/login"
             className={({ isActive }) => 
               isActive 
                 ? "text-white font-bold" 

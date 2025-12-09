@@ -3,7 +3,7 @@ import CardBelajar from '../components/CardBelajar'
 
 function Belajar() {
   return (
-    <div>
+    <div className='pt-28 min-h-screen w-full bg-white'>
       <>
       <CardBelajar />
       </>
