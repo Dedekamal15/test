@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import banner1 from '../assets/Banner/banner1.webp';
+import banner2 from '../assets/Banner/banner2.jpg';
+import banner3 from '../assets/Banner/banner3.jpg';
 
 export default function ImageCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -9,13 +10,12 @@ export default function ImageCarousel() {
   const slides = [
     {
       id: 1,
-      image: banner1,
+      image: banner2,
       description: 'SMK'
     },
     {
       id: 2,
-      image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1200&h=600&fit=crop',
-      title: 'Slide 2',
+      image: banner3,
       description: 'Deskripsi untuk slide kedua'
     },
     {
@@ -55,7 +55,7 @@ export default function ImageCarousel() {
   };
 
   return (
-    <div className="w-full max-w-6xl mx-auto p-4">
+    <div className="w-full  mx-auto p-4">
       <div className="relative w-full h-96 overflow-hidden rounded-lg shadow-2xl bg-gray-900">
         <div 
           className="flex transition-transform duration-500 ease-out h-full"

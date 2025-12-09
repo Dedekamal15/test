@@ -54,6 +54,28 @@ function Navbar() {
           >
             Test
           </NavLink>
+
+           <NavLink 
+            to="/Login"
+            className={({ isActive }) => 
+              isActive 
+                ? "text-white font-bold" 
+                : "hover:text-white transition"
+            }
+          >
+            Login
+          </NavLink>
+
+           <NavLink 
+            to="/test"
+            className={({ isActive }) => 
+              isActive 
+                ? "text-white font-bold" 
+                : "hover:text-white transition"
+            }
+          >
+            Daftar
+          </NavLink>
         </div>
 
         <button 
