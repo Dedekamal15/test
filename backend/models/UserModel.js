@@ -5,13 +5,30 @@ const { DataTypes } = Sequelize;
 const User = db.define(
   "users",
   {
-    name: DataTypes.STRING,
-    email: DataTypes.STRING,
-    password: DataTypes.STRING,
-    refresh_token: DataTypes.TEXT,
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+      validate: {
+        isEmail: true
+      }
+    },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    refresh_token: {
+      type: DataTypes.TEXT,
+      allowNull: true
+    }
   },
   {
     freezeTableName: true,
   }
 );
+
 export default User;

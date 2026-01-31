@@ -1,10 +1,11 @@
 import express from "express";
 import { getUsers, Register, Login } from "../controllers/Users.js";
+import { verifyToken } from "../middleware/Verifytoken.js";
 
 
 const router = express.Router();
 
-router.get("/users", getUsers);
+router.get("/users", verifyToken, getUsers);
 router.post("/users", Register);
 router.post("/login", Login);
 
