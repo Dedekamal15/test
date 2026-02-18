@@ -160,8 +160,7 @@ StudentAnswer.belongsTo(Exam, {
     foreignKey: 'exam_id'
 });
 
-// Sync models dengan database (jalankan sekali untuk create tables)
-// Uncomment baris ini untuk create tables otomatis
+
 await db.sync({ alter: true });
 
 export default { Exam, Question, QuestionOption, StudentAnswer };

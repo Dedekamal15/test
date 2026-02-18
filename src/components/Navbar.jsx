@@ -26,7 +26,7 @@ function Navbar() {
             to="/belajar"
             className={({ isActive }) => 
               isActive 
-                ? "text-white font-bold" 
+                ? "text-black font-bold" 
                 : "hover:text-white transition"
             }
           >
@@ -37,7 +37,7 @@ function Navbar() {
             to="/bermain"
             className={({ isActive }) => 
               isActive 
-                ? "text-white font-bold" 
+                ? "text-black font-bold" 
                 : "hover:text-white transition"
             }
           >
@@ -48,7 +48,7 @@ function Navbar() {
             to="/test"
             className={({ isActive }) => 
               isActive 
-                ? "text-white font-bold" 
+                ? "text-black font-bold" 
                 : "hover:text-white transition"
             }
           >
@@ -59,7 +59,7 @@ function Navbar() {
             to="/login"
             className={({ isActive }) => 
               isActive 
-                ? "text-white font-bold" 
+                ? "text-black font-bold" 
                 : "hover:text-white transition"
             }
           >
@@ -70,7 +70,7 @@ function Navbar() {
             to="/test"
             className={({ isActive }) => 
               isActive 
-                ? "text-white font-bold" 
+                ? "text-black font-bold" 
                 : "hover:text-white transition"
             }
           >
