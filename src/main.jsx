@@ -7,6 +7,7 @@ import { AuthProvider } from './context/AuthContext';
 keycloak.init({
   onLoad: 'login-required',
   pkceMethod: 'S256',
+  checkLoginIframe: false,
 }).then((authenticated) => {
   if (!authenticated) {
     window.location.reload();

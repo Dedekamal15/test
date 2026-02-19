@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import banner2 from '../assets/Banner/banner2.jpg';
-import banner3 from '../assets/Banner/banner3.jpg';
+import banner2 from '../assets/Banner/Banner2.jpg';
+import banner3 from '../assets/Banner/Banner3.jpg';
 
 export default function ImageCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
