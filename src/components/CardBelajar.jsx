@@ -1,8 +1,8 @@
 import React from 'react'
-import word from '../assets/Card/Cardword.webp'
-import excel from '../assets/Card/Cardexcel.svg'
+import word from '../assets/Card/CardWord.webp'
+import excel from '../assets/Card/CardExcel.svg'
 import powerpoint from '../assets/Card/CardPowerpoint.svg'
-import Javascript from '../assets/Card/Cardjavascript.webp'
+import Javascript from '../assets/Card/CardJavascript.webp'
 import { NavLink } from 'react-router-dom'
 
 function CardBelajar() {

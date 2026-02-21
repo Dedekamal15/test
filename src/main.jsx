@@ -3,11 +3,13 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import keycloak from './keycloak';
 import { AuthProvider } from './context/AuthContext';
+import indexcss from '../index.css';
 
-keycloak.init({
+keycloak.init({ 
   onLoad: 'login-required',
-  pkceMethod: 'S256',
   checkLoginIframe: false,
+  pkceMethod: false, 
+  redirectUri: 'http://tst.local',
 }).then((authenticated) => {
   if (!authenticated) {
     window.location.reload();
