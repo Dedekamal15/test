@@ -3,6 +3,7 @@ import word from '../assets/Card/CardWord.webp'
 import excel from '../assets/Card/CardExcel.svg'
 import powerpoint from '../assets/Card/CardPowerpoint.svg'
 import Javascript from '../assets/Card/CardJavascript.webp'
+import snapp from '../assets/Card/CardSnapp.webp'
 import { NavLink } from 'react-router-dom'
 
 function CardBelajar() {
@@ -71,6 +72,21 @@ function CardBelajar() {
             Mulai Belajar
           </div>
         </NavLink>
+        <div>
+          <NavLink to="https://snapp.tst.local" className="flex flex-col flex-1">
+          <div className='flex items-center justify-center h-48 mb-4'>
+            <img 
+              src={snapp}
+              alt="Belajar Programing Snapp"
+              className='max-h-full max-w-full object-contain rounded-lg'
+            />
+          </div>
+          <h2 className='font-bold text-2xl text-black mb-4 text-center'>EXCEL</h2>
+          <div className='mt-auto bg-blue-700 py-3 w-full flex items-center justify-center text-white font-bold rounded-lg transition-all duration-300 hover:bg-blue-800 hover:scale-105 hover:shadow-xl'>
+            Mulai Belajar
+          </div>
+          </NavLink>
+        </div>
       </div>
 
     </div>
