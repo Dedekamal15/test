@@ -81,7 +81,7 @@ function CardBelajar() {
               className='max-h-full max-w-full object-contain rounded-lg'
             />
           </div>
-          <h2 className='font-bold text-2xl text-black mb-4 text-center'>EXCEL</h2>
+          <h2 className='font-bold text-2xl text-black mb-4 text-center'>Snapp</h2>
           <div className='mt-auto bg-blue-700 py-3 w-full flex items-center justify-center text-white font-bold rounded-lg transition-all duration-300 hover:bg-blue-800 hover:scale-105 hover:shadow-xl'>
             Mulai Belajar
           </div>

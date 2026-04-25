@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import keycloak from './keycloak';
 import { AuthProvider } from './context/AuthContext';
-import indexcss from '../index.css'; 
+import '/index.css'
 
 keycloak.init({
   onLoad: 'login-required',
