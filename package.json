@@ -5,22 +5,28 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "auth": "node server/index.js",
+    "dev:all": "concurrently \"npm run dev\" \"npm run auth\"",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
   },
   "dependencies": {
+    "bcryptjs": "^3.0.3",
     "body-parser": "^2.2.1",
+    "concurrently": "^9.2.1",
+    "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
     "express": "^5.2.1",
-    "keycloak-js": "^26.2.3",
+    "jsonwebtoken": "^9.0.3",
     "lucide-react": "^0.555.0",
     "mysql2": "^3.16.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-icons": "^5.5.0",
-    "react-router-dom": "^7.10.0"
+    "react-router-dom": "^7.10.0",
+    "uuid": "^14.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",

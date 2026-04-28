@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import logo from "../assets/react.svg";
 import { IoMenu, IoClose } from 'react-icons/io5';
 import { useState } from 'react';
@@ -6,7 +6,8 @@ import { useAuth } from '../context/AuthContext';
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const { isGuru, isAuthenticated, login, logout, user } = useAuth();
+  const { isGuru, isAuthenticated, logout, user } = useAuth();
+  const navigate = useNavigate();
 
   return (
     <nav className="fixed top-0 left-0 w-full z-50 bg-white shadow-md">
@@ -46,13 +47,13 @@ function Navbar() {
           {/* Tombol Login / Logout */}
           {isAuthenticated ? (
             <div className="flex items-center gap-3">
-              <span className="text-sm text-gray-600">Hi, {user?.preferred_username}</span>
+              <span className="text-sm text-gray-600">Hi, {user?.username}</span>
               <button onClick={logout} className="text-red-500 font-bold hover:text-red-700 transition">
                 Logout
               </button>
             </div>
           ) : (
-            <button onClick={login} className="font-bold hover:text-gray-500 transition">
+            <button onClick={() => navigate('/login')} className="font-bold hover:text-gray-500 transition">
               Login
             </button>
           )}
@@ -94,7 +95,7 @@ function Navbar() {
                 Logout
               </button>
             ) : (
-              <button onClick={login} className="text-left font-bold">
+              <button onClick={() => { navigate('/login'); setIsOpen(false); }} className="text-left font-bold">
                 Login
               </button>
             )}
