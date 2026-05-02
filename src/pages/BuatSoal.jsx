@@ -10,7 +10,7 @@ const TeacherExamCreator = () => {
   const [saveSuccess, setSaveSuccess] = useState(false);
 
   // API Base URL - Sesuaikan dengan backend Anda
-  const API_URL = 'http://localhost:3000/api';
+  const API_URL = 'http://tst.lan:3000/api';
 
   // State untuk form tambah soal
   const [questionType, setQuestionType] = useState('multiple_choice');
@@ -40,8 +40,8 @@ const TeacherExamCreator = () => {
       return;
     }
 
-    if ((questionType === 'multiple_choice' || questionType === 'checkbox') && 
-        options.filter(opt => opt.trim()).length < 2) {
+    if ((questionType === 'multiple_choice' || questionType === 'checkbox') &&
+      options.filter(opt => opt.trim()).length < 2) {
       alert('Minimal harus ada 2 pilihan jawaban!');
       return;
     }
@@ -58,7 +58,7 @@ const TeacherExamCreator = () => {
     }
 
     setQuestions([...questions, newQuestion]);
-    
+
     // Reset form
     setQuestionText('');
     setOptions(['', '']);
@@ -73,7 +73,7 @@ const TeacherExamCreator = () => {
   const moveQuestion = (index, direction) => {
     const newQuestions = [...questions];
     const newIndex = direction === 'up' ? index - 1 : index + 1;
-    
+
     if (newIndex >= 0 && newIndex < questions.length) {
       [newQuestions[index], newQuestions[newIndex]] = [newQuestions[newIndex], newQuestions[index]];
       setQuestions(newQuestions);
@@ -82,51 +82,32 @@ const TeacherExamCreator = () => {
 
   // FUNGSI BARU: Simpan ke Database
   const saveToDatabase = async () => {
-    if (!examTitle.trim()) {
-      alert('Judul ujian tidak boleh kosong!');
-      return;
-    }
-
-    if (questions.length === 0) {
-      alert('Tambahkan minimal 1 soal!');
-      return;
-    }
+    if (!examTitle.trim()) return alert('Judul ujian tidak boleh kosong!');
+    if (questions.length === 0) return alert('Tambahkan minimal 1 soal!');
 
     setSaving(true);
-    setSaveSuccess(false);
-
     try {
-      const examData = {
-        title: examTitle,
-        description: examDescription,
-        questions: questions,
-        created_by: 1 // Ganti dengan ID guru yang login
-      };
-
-      const response = await fetch(`${API_URL}/exams`, {
+      const res = await fetch(`${API_URL}/exams`, {  // ✅ API_URL sudah didefinisikan di atas
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(examData)
+        credentials: 'include',                       // ✅ untuk cookie SSO
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          title: examTitle,
+          description: examDescription,
+          questions: questions,
+        }),
       });
 
-      const result = await response.json();
+      const result = await res.json();  // ✅ dari res, bukan response
 
       if (result.success) {
         setSaveSuccess(true);
-        alert(`✅ Ujian berhasil disimpan!\nID Ujian: ${result.data.examId}\nTotal Soal: ${result.data.totalQuestions}`);
-        
-        // Reset form setelah berhasil
-        // setExamTitle('');
-        // setExamDescription('');
-        // setQuestions([]);
+        alert(`✅ Ujian berhasil disimpan! ID: ${result.data.examId}`);
       } else {
-        alert('❌ Gagal menyimpan ujian: ' + result.message);
+        alert('❌ Gagal: ' + result.message);
       }
     } catch (error) {
-      console.error('Error:', error);
-      alert('❌ Terjadi kesalahan koneksi ke server');
+      alert('❌ Tidak bisa terhubung ke server: ' + error.message);
     } finally {
       setSaving(false);
     }
@@ -138,7 +119,7 @@ const TeacherExamCreator = () => {
       description: examDescription,
       questions: questions
     };
-    
+
     const dataStr = JSON.stringify(examData, null, 2);
     const dataBlob = new Blob([dataStr], { type: 'application/json' });
     const url = URL.createObjectURL(dataBlob);
@@ -162,7 +143,7 @@ const TeacherExamCreator = () => {
               ×
             </button>
           </div>
-          
+
           <div className="p-6 max-h-[70vh] overflow-y-auto">
             <div className="bg-purple-100 rounded-lg p-6 mb-6">
               <h1 className="text-2xl font-bold mb-2">{examTitle || 'Judul Ujian'}</h1>
@@ -363,7 +344,7 @@ const TeacherExamCreator = () => {
         {questions.length > 0 && (
           <div className="bg-white rounded-lg border p-6 mb-6">
             <h2 className="text-xl font-bold mb-4">Daftar Soal ({questions.length})</h2>
-            
+
             <div className="space-y-3">
               {questions.map((question, index) => (
                 <div key={question.id} className="border rounded-lg p-4 hover:bg-gray-50">
@@ -377,7 +358,7 @@ const TeacherExamCreator = () => {
                         <GripVertical className="w-4 h-4" />
                       </button>
                     </div>
-                    
+
                     <div className="flex-1">
                       <div className="flex items-start justify-between mb-2">
                         <h3 className="font-medium">
@@ -385,13 +366,13 @@ const TeacherExamCreator = () => {
                           {question.required && <span className="text-red-500 ml-1">*</span>}
                         </h3>
                       </div>
-                      
+
                       <div className="text-sm text-gray-500 mb-2">
                         Tipe: {
                           question.type === 'multiple_choice' ? 'Pilihan Ganda' :
-                          question.type === 'checkbox' ? 'Kotak Centang' :
-                          question.type === 'short_answer' ? 'Jawaban Singkat' :
-                          'Jawaban Panjang'
+                            question.type === 'checkbox' ? 'Kotak Centang' :
+                              question.type === 'short_answer' ? 'Jawaban Singkat' :
+                                'Jawaban Panjang'
                         }
                       </div>
 
@@ -427,7 +408,7 @@ const TeacherExamCreator = () => {
               <Eye className="w-5 h-5" />
               Preview Ujian
             </button>
-            
+
             <button
               onClick={saveToDatabase}
               disabled={saving}

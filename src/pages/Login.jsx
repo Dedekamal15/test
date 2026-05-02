@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
-const AUTH_URL = import.meta.env.VITE_AUTH_URL || 'http://localhost:5001/api/auth';
+const AUTH_URL = import.meta.env.VITE_AUTH_URL || 'http://tst.lan:5001/api/auth';
 
 // ── Shared password visibility toggle ────────────────────────
 function EyeIcon({ visible }) {
@@ -53,12 +53,12 @@ function LoginForm({ onSwitchTab }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [showPass, setShowPass] = useState(false);
-  const [error, setError]       = useState('');
-  const [loading, setLoading]   = useState(false);
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const { login } = useAuth();
-  const navigate  = useNavigate();
-  const location  = useLocation();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const from = location.state?.from || '/';
 
@@ -77,7 +77,7 @@ function LoginForm({ onSwitchTab }) {
       if (from && from !== '/login') {
         navigate(from, { replace: true });
       } else if (role === 'guru' || role === 'admin') {
-        navigate('/dashboard', { replace: true });
+        navigate('/test', { replace: true });
       } else {
         navigate('/', { replace: true });
       }
@@ -165,11 +165,11 @@ function RegisterForm({ onSwitchTab }) {
   const [form, setForm] = useState({
     username: '', password: '', confirmPassword: '', kelas: '',
   });
-  const [showPass, setShowPass]         = useState(false);
-  const [showConfirm, setShowConfirm]   = useState(false);
-  const [error, setError]               = useState('');
-  const [success, setSuccess]           = useState('');
-  const [loading, setLoading]           = useState(false);
+  const [showPass, setShowPass] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const update = (field) => (e) => setForm((f) => ({ ...f, [field]: e.target.value }));
 
@@ -217,7 +217,7 @@ function RegisterForm({ onSwitchTab }) {
     }
   };
 
-  const kelasOptions = [4,5,6,7,8,9,10,11,12];
+  const kelasOptions = [4, 5, 6, 7, 8, 9, 10, 11, 12];
 
   return (
     <form onSubmit={handleRegister} className="px-8 py-6 space-y-4">
@@ -374,22 +374,20 @@ function Login() {
             <button
               id="tab-login"
               onClick={() => setTab('login')}
-              className={`flex-1 py-3 text-sm font-semibold transition-all ${
-                isLogin
+              className={`flex-1 py-3 text-sm font-semibold transition-all ${isLogin
                   ? 'text-blue-600 border-b-2 border-blue-600 bg-blue-50'
                   : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50'
-              }`}
+                }`}
             >
               Login
             </button>
             <button
               id="tab-register"
               onClick={() => setTab('register')}
-              className={`flex-1 py-3 text-sm font-semibold transition-all ${
-                !isLogin
+              className={`flex-1 py-3 text-sm font-semibold transition-all ${!isLogin
                   ? 'text-indigo-600 border-b-2 border-indigo-600 bg-indigo-50'
                   : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50'
-              }`}
+                }`}
             >
               Daftar
             </button>

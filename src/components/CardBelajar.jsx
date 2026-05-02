@@ -13,11 +13,7 @@ function CardBelajar() {
       <div className='bg-white p-6 rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col'>
         <NavLink to="/belajar/word" className="flex flex-col flex-1">
           <div className='flex items-center justify-center h-48 mb-4'>
-            <img
-              src={word}
-              alt="Belajar Ms WORD"
-              className='max-h-full max-w-full object-contain rounded-lg'
-            />
+            <img src={word} alt="Belajar Ms WORD" className='max-h-full max-w-full object-contain rounded-lg' />
           </div>
           <h2 className='font-bold text-2xl text-black mb-4 text-center'>WORD</h2>
           <div className='mt-auto bg-blue-700 py-3 w-full flex items-center justify-center text-white font-bold rounded-lg transition-all duration-300 hover:bg-blue-800 hover:scale-105 hover:shadow-xl'>
@@ -29,11 +25,7 @@ function CardBelajar() {
       <div className='bg-white p-6 rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col'>
         <NavLink to="/belajar/Excel" className="flex flex-col flex-1">
           <div className='flex items-center justify-center h-48 mb-4'>
-            <img
-              src={excel}
-              alt="Belajar Ms EXCEL"
-              className='max-h-full max-w-full object-contain rounded-lg'
-            />
+            <img src={excel} alt="Belajar Ms EXCEL" className='max-h-full max-w-full object-contain rounded-lg' />
           </div>
           <h2 className='font-bold text-2xl text-black mb-4 text-center'>EXCEL</h2>
           <div className='mt-auto bg-blue-700 py-3 w-full flex items-center justify-center text-white font-bold rounded-lg transition-all duration-300 hover:bg-blue-800 hover:scale-105 hover:shadow-xl'>
@@ -45,11 +37,7 @@ function CardBelajar() {
       <div className='bg-white p-6 rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col'>
         <NavLink to="/belajar/PowerPoint" className="flex flex-col flex-1">
           <div className='flex items-center justify-center h-48 mb-4'>
-            <img
-              src={powerpoint}
-              alt="Belajar Ms PowerPoint"
-              className='max-h-full max-w-full object-contain rounded-lg'
-            />
+            <img src={powerpoint} alt="Belajar Ms PowerPoint" className='max-h-full max-w-full object-contain rounded-lg' />
           </div>
           <h2 className='font-bold text-2xl text-black mb-4 text-center'>PowerPoint</h2>
           <div className='mt-auto bg-blue-700 py-3 w-full flex items-center justify-center text-white font-bold rounded-lg transition-all duration-300 hover:bg-blue-800 hover:scale-105 hover:shadow-xl'>
@@ -61,32 +49,26 @@ function CardBelajar() {
       <div className='bg-white p-6 rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col'>
         <NavLink to="/belajar/JS" className="flex flex-col flex-1">
           <div className='flex items-center justify-center h-48 mb-4'>
-            <img
-              src={Javascript}
-              alt="Belajar JavaScript"
-              className='max-h-full max-w-full object-contain rounded-lg'
-            />
+            <img src={Javascript} alt="Belajar JavaScript" className='max-h-full max-w-full object-contain rounded-lg' />
           </div>
           <h2 className='font-bold text-2xl text-black mb-4 text-center'>JavaScript</h2>
           <div className='mt-auto bg-blue-700 py-3 w-full flex items-center justify-center text-white font-bold rounded-lg transition-all duration-300 hover:bg-blue-800 hover:scale-105 hover:shadow-xl'>
             Mulai Belajar
           </div>
         </NavLink>
-        <div>
-          <NavLink to="http://snapp.tst.lan" className="flex flex-col flex-1">
-            <div className='flex items-center justify-center h-48 mb-4'>
-              <img
-                src={snapp}
-                alt="Belajar Programing Snapp"
-                className='max-h-full max-w-full object-contain rounded-lg'
-              />
-            </div>
-            <h2 className='font-bold text-2xl text-black mb-4 text-center'>Snapp</h2>
-            <div className='mt-auto bg-blue-700 py-3 w-full flex items-center justify-center text-white font-bold rounded-lg transition-all duration-300 hover:bg-blue-800 hover:scale-105 hover:shadow-xl'>
-              Mulai Belajar
-            </div>
-          </NavLink>
-        </div>
+      </div>
+
+      {/* ✅ Snapp sekarang jadi kartu tersendiri, bukan di dalam JS */}
+      <div className='bg-white p-6 rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col'>
+        <NavLink to="http://snapp.tst.lan" className="flex flex-col flex-1">
+          <div className='flex items-center justify-center h-48 mb-4'>
+            <img src={snapp} alt="Belajar Programing Snapp" className='max-h-full max-w-full object-contain rounded-lg' />
+          </div>
+          <h2 className='font-bold text-2xl text-black mb-4 text-center'>Snapp</h2>
+          <div className='mt-auto bg-blue-700 py-3 w-full flex items-center justify-center text-white font-bold rounded-lg transition-all duration-300 hover:bg-blue-800 hover:scale-105 hover:shadow-xl'>
+            Mulai Belajar
+          </div>
+        </NavLink>
       </div>
 
     </div>

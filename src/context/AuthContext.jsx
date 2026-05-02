@@ -2,13 +2,13 @@ import { createContext, useContext, useEffect, useState, useCallback } from 'rea
 
 const AuthContext = createContext();
 
-const AUTH_URL = import.meta.env.VITE_AUTH_URL || 'http://localhost:5001/api/auth';
+const AUTH_URL = import.meta.env.VITE_AUTH_URL || 'http://tst.lan:5001/api/auth';
 
 export function AuthProvider({ children }) {
-  const [user, setUser]                     = useState(null);
+  const [user, setUser] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [isGuru, setIsGuru]                 = useState(false);
-  const [loading, setLoading]               = useState(true); // true until verify finishes
+  const [isGuru, setIsGuru] = useState(false);
+  const [loading, setLoading] = useState(true); // true until verify finishes
 
   /* ── Verify session on mount (SSO: cookie-based) ── */
   useEffect(() => {

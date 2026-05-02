@@ -92,8 +92,8 @@ function QuickStats() {
         }}>
           <Monitor size={32} color="#2980b9" />
           <div>
-            <div style={{ fontSize: '40px', fontWeight: '900', color: '#2980b9', lineHeight: 1 }}>40</div>
-            <div style={{ fontSize: '12px', color: '#555', fontWeight: '700' }}>Unit PC&nbsp;<span style={{ color: '#2980b9' }}>AKTIF</span></div>
+            <div style={{ fontSize: '40px', fontWeight: '900', color: '#2980b9', lineHeight: 1 }}>43</div>
+            <div style={{ fontSize: '12px', color: '#555', fontWeight: '700' }}>Unit Komputer&nbsp;<span style={{ color: '#2980b9' }}>AKTIF</span></div>
           </div>
         </div>
 
@@ -130,7 +130,7 @@ function FiturUtama() {
       desc: 'Fasilitas untuk ANBK dan ujian sekolah stabil.',
     },
     {
-      icon: '🚀',
+      icon: '🔍',
       bg: '#27ae60',
       title: 'SELF-LEARNING',
       sub: '',

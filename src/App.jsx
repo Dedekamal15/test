@@ -4,12 +4,16 @@ import { lazy, Suspense } from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
+const DaftarNilai = lazy(() => import('./pages/DaftarNilai'));
+
+
 // ── Lazy Loaded Pages ───────────────────────────────────────────────────────
 // Setiap halaman hanya akan di-download saat user membuka route-nya.
-const Home   = lazy(() => import('./pages/Home'));
+const Home = lazy(() => import('./pages/Home'));
 const Belajar = lazy(() => import('./pages/Belajar'));
-const Login  = lazy(() => import('./pages/Login'));
-const Test   = lazy(() => import('./pages/InputSoal'));
+const Login = lazy(() => import('./pages/Login'));
+const BuatSoal = lazy(() => import('./pages/BuatSoal'));
+const Test = lazy(() => import('./pages/Test'));
 
 // ── Fallback Spinner ─────────────────────────────────────────────────────────
 function PageLoader() {
@@ -60,40 +64,47 @@ function ProtectedRoute({ children, guruOnly = false }) {
 
 function AppRoutes() {
   return (
-    <>
+    <div className="flex flex-col min-h-screen">
       <Navbar />
-      <Suspense fallback={<PageLoader />}>
-      <Routes>
-        {/* Public */}
-        <Route path="/"      element={<Home />} />
-        <Route path="/login" element={<Login />} />
+      <main className="flex-1 mt-20">
+        <Suspense fallback={<PageLoader />}>
+          <Routes>
+            {/* Public */}
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
 
-        {/* Protected — harus login */}
-        <Route path="/belajar" element={
-          <ProtectedRoute><Belajar /></ProtectedRoute>
-        } />
-        <Route path="/bermain" element={
-          <ProtectedRoute>
-            {/* Placeholder sampai halaman Bermain dibuat */}
-            <div className="flex h-screen items-center justify-center text-gray-500 text-lg">
-              Halaman Bermain (Coming Soon)
-            </div>
-          </ProtectedRoute>
-        } />
+            {/* Protected — harus login */}
+            <Route path="/belajar" element={
+              <ProtectedRoute><Belajar /></ProtectedRoute>
+            } />
+            <Route path="/bermain" element={
+              <ProtectedRoute>
+                <div className="flex min-h-[60vh] items-center justify-center text-gray-500 text-lg">
+                  Halaman Bermain (Coming Soon)
+                </div>
+              </ProtectedRoute>
+            } />
+            <Route path="/pages/Test" element={
+              <ProtectedRoute><Test /></ProtectedRoute>
+            } />
 
-        {/* Protected — khusus Guru/Admin */}
-        <Route path="/test" element={
-          <ProtectedRoute guruOnly>
-            <Test />
-          </ProtectedRoute>
-        } />
+            {/* Protected — khusus Guru/Admin */}
+            <Route path="/BuatSoal" element={
+              <ProtectedRoute guruOnly>
+                <BuatSoal />
+              </ProtectedRoute>
+            } />
+            <Route path="/daftar-nilai" element={
+              <ProtectedRoute guruOnly><DaftarNilai /></ProtectedRoute>
+            } />
 
-        {/* Fallback */}
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
-      </Suspense>
+            {/* Fallback */}
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </Suspense>
+      </main>
       <Footer />
-    </>
+    </div>
   );
 }
 

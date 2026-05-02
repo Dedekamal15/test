@@ -47,3 +47,19 @@ export async function createUser({ username, password, kelas, role = 'siswa' }) 
 export async function verifyPassword(plaintext, hashed) {
   return bcrypt.compare(plaintext, hashed);
 }
+
+export async function updateUserPassword(id, newPassword) {
+  const hashed = await bcrypt.hash(newPassword, 12);
+  await pool.execute(
+    'UPDATE users SET password = ? WHERE id = ?',
+    [hashed, id]
+  );
+}
+
+export async function updateUserForSeed(id, { password, role, kelas }) {
+  const hashed = await bcrypt.hash(password, 12);
+  await pool.execute(
+    'UPDATE users SET password = ?, role = ?, kelas = ? WHERE id = ?',
+    [hashed, role, kelas || null, id]
+  );
+}

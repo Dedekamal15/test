@@ -11,7 +11,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 dotenv.config({ path: resolve(__dirname, '../../.env') });
 
 import pool from '../config/db.js';
-import { initUsersTable, createUser, findUserByUsername } from '../models/User.js';
+import { initUsersTable, createUser, findUserByUsername, updateUserForSeed } from '../models/User.js';
 
 const defaultUsers = [
   { username: 'admin',   password: 'Admin123!',  kelas: null,  role: 'admin' },
@@ -27,7 +27,8 @@ async function seed() {
   for (const u of defaultUsers) {
     const existing = await findUserByUsername(u.username);
     if (existing) {
-      console.log(`  ⚠️  User "${u.username}" already exists — skipped`);
+      await updateUserForSeed(existing.id, u);
+      console.log(`  🔄  Updated user "${u.username}" (ensured password & role)`);
     } else {
       const id = await createUser(u);
       console.log(`  ✅  Created user "${u.username}" (id=${id}, role=${u.role})`);

@@ -2,7 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import dotenv from 'dotenv';
-
+import examRouter from './routes/exam.js';
 import { initUsersTable } from './models/User.js';
 import authRoutes from './routes/auth.js';
 
@@ -12,7 +12,7 @@ const app = express();
 const PORT = process.env.AUTH_PORT || 5001;
 
 /* ─── Allowed Origins (SSO: list all your apps) ───── */
-const allowedOrigins = (process.env.ALLOWED_ORIGINS || 'http://localhost:5173')
+const allowedOrigins = (process.env.ALLOWED_ORIGINS || 'http://localhost:5173,http://192.168.69.252:5173,http://tst.lan:5173')
   .split(',')
   .map((o) => o.trim());
 
@@ -33,7 +33,7 @@ app.use(cookieParser());
 
 /* ─── Routes ───────────────────────────────────────── */
 app.use('/api/auth', authRoutes);
-
+app.use('/api/exams', examRouter);
 /* ─── Health Check ─────────────────────────────────── */
 app.get('/health', (_req, res) => {
   res.json({
@@ -59,7 +59,7 @@ async function start() {
   try {
     await initUsersTable();
     app.listen(PORT, () => {
-      console.log(`🚀 Auth Server running on http://localhost:${PORT}`);
+      console.log(`🚀 Auth Server running on http://tst.lan:${PORT}`);
       console.log(`   Allowed origins: ${allowedOrigins.join(', ')}`);
     });
   } catch (err) {
