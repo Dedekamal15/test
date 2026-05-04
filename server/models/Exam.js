@@ -1,9 +1,9 @@
 import pool from '../config/db.js'; // sesuaikan path koneksi mysql2 kamu
 
-export async function createExam({ title, description, duration, created_by }) {
+export async function createExam({ title, description, duration, created_by, kelas_target }) {
     const [r] = await pool.execute(
-        'INSERT INTO exams (title, description, duration, created_by) VALUES (?, ?, ?, ?)',
-        [title, description, duration ?? 30, created_by]
+        'INSERT INTO exams (title, description, duration, created_by, kelas_target) VALUES (?, ?, ?, ?, ?)',
+        [title, description, duration ?? 30, created_by, kelas_target ?? '1']
     );
     return r.insertId;
 }
@@ -18,12 +18,21 @@ export async function createQuestions(examId, questions) {
     }
 }
 
-export async function getActiveExams() {
+export async function getActiveExams(kelas = null) {
+    if (kelas) {
+        const [rows] = await pool.execute(
+            'SELECT id, title, description, duration, created_at FROM exams WHERE is_active = 1 AND kelas_target = ? ORDER BY created_at DESC',
+            [kelas]
+        );
+        return rows;
+    }
     const [rows] = await pool.execute(
         'SELECT id, title, description, duration, created_at FROM exams WHERE is_active = 1 ORDER BY created_at DESC'
     );
     return rows;
 }
+
+
 
 export async function getExamWithQuestions(examId) {
     const [[exam]] = await pool.execute(
@@ -126,15 +135,12 @@ export async function getExamById(examId) {
     return exam || null;
 }
 
-export async function getAllExamsWithStats() {
+export async function getAllExamsWithStats(kelas = null) {
+    const condition = kelas ? `AND e.kelas_target = '${kelas}'` : '';
     const [rows] = await pool.execute(`
     SELECT 
-      e.id,
-      e.title,
-      e.description,
-      e.duration,
-      e.is_active,
-      e.created_at,
+      e.id, e.title, e.description, e.duration, e.is_active,
+      e.kelas_target, e.created_at,
       u.username as created_by_name,
       COUNT(DISTINCT es.student_id) as total_submissions,
       COUNT(DISTINCT q.id) as total_questions
@@ -142,6 +148,7 @@ export async function getAllExamsWithStats() {
     LEFT JOIN users u ON u.id = e.created_by
     LEFT JOIN exam_submissions es ON es.exam_id = e.id
     LEFT JOIN questions q ON q.exam_id = e.id
+    WHERE 1=1 ${condition}
     GROUP BY e.id
     ORDER BY e.created_at DESC
   `);

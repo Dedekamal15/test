@@ -7,14 +7,20 @@ import {
 /* Guru: POST /api/exams — upload soal */
 export async function uploadExam(req, res) {
     try {
-        if (req.user.role !== 'guru') {
+        if (req.user.role !== 'guru' && req.user.role !== 'admin') {
             return res.status(403).json({ error: 'Hanya guru yang bisa upload soal' });
         }
         const { title, description, duration, questions } = req.body;
         if (!title || !questions?.length) {
             return res.status(400).json({ error: 'Judul dan soal wajib diisi' });
         }
-        const examId = await createExam({ title, description, duration, created_by: req.user.sub });
+        // Otomatis pakai kelas guru yang login
+        const kelas_target = req.user.kelas;
+        const examId = await createExam({
+            title, description, duration,
+            created_by: req.user.sub,
+            kelas_target
+        });
         await createQuestions(examId, questions);
         return res.status(201).json({ success: true, examId, totalQuestions: questions.length });
     } catch (err) {
@@ -26,7 +32,8 @@ export async function uploadExam(req, res) {
 /* Siswa: GET /api/exams — daftar ujian aktif */
 export async function listExams(req, res) {
     try {
-        const exams = await getActiveExams();
+        const kelas = req.user.role === 'siswa' ? req.user.kelas : null;
+        const exams = await getActiveExams(kelas);
         return res.json(exams);
     } catch (err) {
         console.error('[listExams]', err);
@@ -82,14 +89,14 @@ export async function listAllExams(req, res) {
         if (req.user.role !== 'guru' && req.user.role !== 'admin') {
             return res.status(403).json({ error: 'Akses ditolak' });
         }
-        const exams = await getAllExamsWithStats();
+        const kelas = req.user.role === 'guru' ? req.user.kelas : null;
+        const exams = await getAllExamsWithStats(kelas);
         return res.json(exams);
     } catch (err) {
         console.error('[listAllExams]', err);
         return res.status(500).json({ error: 'Internal server error' });
     }
 }
-
 /* Guru: GET /api/exams/:id/results — hasil jawaban semua siswa */
 export async function getResults(req, res) {
     try {
